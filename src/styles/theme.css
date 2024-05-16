@@ -1,0 +1,59 @@
+:root {
+  --l-bg: 0, 0%, 94%;
+  --l-fg: 0, 0%, 20%;
+  --l-primary: 89, 64%, 64%;
+  --l-secondary: 40, 90%, 56%;
+  --l-accent: 188, 62%, 59%;
+  --l-border: 0, 0%, 80%;
+
+  --d-bg: 0, 0%, 11%;
+  --d-fg: 0, 0%, 88%;
+  --d-primary: 145, 63%, 51%;
+  --d-secondary: 36, 88%, 53%;
+  --d-accent: 204, 53%, 53%;
+  --d-border: 0, 0%, 27%;
+}
+
+:root[data-theme="light"]  {
+  --c-bg: var(--l-bg);
+  --c-fg: var(--l-fg);
+  --c-border: var(--l-border);
+  --c-primary: var(--l-primary);
+  --c-secondary: var(--l-secondary);
+  --c-accent: var(--l-accent);
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  --c-bg: var(--d-bg);
+  --c-fg: var(--d-fg);
+  --c-border: var(--d-border);
+  --c-primary: var(--d-primary);
+  --c-secondary: var(--d-secondary);
+  --c-accent: var(--d-accent);
+  color-scheme: dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --c-bg: var(--d-bg);
+    --c-fg: var(--d-fg);
+    --c-border: var(--d-border);
+    --c-primary: var(--d-primary);
+    --c-secondary: var(--d-secondary);
+    --c-accent: var(--d-accent);
+    color-scheme: dark;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --c-bg: var(--l-bg);
+    --c-fg: var(--l-fg);
+    --c-border: var(--l-border);
+    --c-primary: var(--l-primary);
+    --c-secondary: var(--l-secondary);
+    --c-accent: var(--l-accent);
+    color-scheme: light;
+  }
+}

@@ -1,7 +1,14 @@
+@import "theme.css";
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: hsl(var(--c-bg));
+  color: hsl(var(--c-fg));
 }
