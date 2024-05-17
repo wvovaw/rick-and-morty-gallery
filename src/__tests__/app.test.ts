@@ -1,10 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import app from "@/app.vue";
 
 describe("app root component", () => {
   it("can mount", () => {
-    const wrapper = mount(app);
+    const wrapper = shallowMount(app);
     expect(wrapper.vm).toBeTruthy();
   });
 });
