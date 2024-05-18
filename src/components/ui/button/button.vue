@@ -27,7 +27,12 @@ button {
   transition: filter 0.2s;
 }
 
-button:hover {
+button:hover:not(:disabled) {
   filter: hue-rotate(45deg);
+}
+
+button:disabled {
+  filter: saturate(0);
+  cursor: not-allowed;
 }
 </style>
