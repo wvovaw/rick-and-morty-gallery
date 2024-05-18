@@ -1,22 +1,27 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
-import { CharactersGrid } from "@/components/characters-grid";
-import { getCharacters } from "@/api";
-import type { ICharacter } from "@/models/rick-and-morty";
-
-const chars = ref<ICharacter[]>([]);
-
-onMounted(async () => {
-  const res = await getCharacters();
-  if (res?.results)
-    chars.value = res.results;
-});
+import { CharactersGallery } from "@/widgets/characters-gallery";
+import { UILoading } from "@/components/ui";
 </script>
 
 <template>
-  <main>
-    <CharactersGrid
-      :characters="chars"
-    />
+  <main class="page">
+    <Suspense>
+      <template #fallback>
+        <UILoading class="loading" />
+      </template>
+      <CharactersGallery />
+    </Suspense>
   </main>
 </template>
+
+<style scoped>
+.page {
+  padding: 1rem;
+}
+.loading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+</style>
