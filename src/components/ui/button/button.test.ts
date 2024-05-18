@@ -6,7 +6,7 @@ describe("ui-button component", () => {
   it("renders an html button by default", () => {
     const wrapper = mount(UIButton);
     const buttonRoot = wrapper.find("button");
-    expect(buttonRoot).toBeDefined();
+    expect(buttonRoot.html()).toBeDefined();
   });
 
   it("renders as 'a' if prop 'as=a' defined", () => {
