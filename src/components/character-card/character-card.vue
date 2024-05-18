@@ -52,6 +52,7 @@ defineProps<{
   background: hsl(var(--c-bg2));
   box-shadow: var(--box-shadow-sm);
   border-radius: var(--border-radius-md);
+  overflow: hidden;
 }
 .card__body {
   padding: 12px;
@@ -69,10 +70,11 @@ defineProps<{
   .card {
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    max-width: 300px;
   }
   .card__aside {
     overflow: hidden;
+    width: 100%;
     border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
   }
   .card__aside img {
