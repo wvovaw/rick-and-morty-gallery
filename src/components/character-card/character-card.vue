@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import { onMounted, ref } from "vue";
 import Status from "./status.vue";
+import { useEpisode } from "@/composables/useEpisode";
 
-defineProps<{
+const props = defineProps<{
   image: {
     src: string;
     alt: string;
@@ -11,6 +13,14 @@ defineProps<{
   location: string;
   episode: string;
 }>();
+
+const episodeName = ref<string | undefined>();
+onMounted(async () => {
+  const ep = await useEpisode(props.episode);
+  if (ep)
+    episodeName.value = ep.name;
+  else episodeName.value = "Unknown";
+});
 </script>
 
 <template>
@@ -31,7 +41,16 @@ defineProps<{
       </div>
       <div class="card__section">
         <span class="label">First seen in:</span>
-        <span class="episode" data-test-id="episode">{{ episode }}</span>
+        <span class="episode" data-test-id="episode">
+          <template v-if="episodeName">
+            {{ episodeName }}
+          </template>
+          <div
+            v-else
+            class="skeleton episode-skeleton"
+            data-test-id="episode-skeleton"
+          />
+        </span>
       </div>
     </div>
   </div>
@@ -96,5 +115,11 @@ defineProps<{
     height: 100%;
     object-fit: cover;
   }
+}
+
+.episode-skeleton {
+  height: 1em;
+  width: 120px;
+  margin-top: .5em;
 }
 </style>

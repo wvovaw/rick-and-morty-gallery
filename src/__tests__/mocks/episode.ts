@@ -1,8 +1,9 @@
 import type { IEpisode } from "@/models/rick-and-morty";
 
+export const episodeName = "The Ricklantis Mixup";
 export const episode: IEpisode = {
   id: 28,
-  name: "The Ricklantis Mixup",
+  name: episodeName,
   air_date: "September 10, 2017",
   episode: "S03E07",
   characters: [
