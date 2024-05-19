@@ -4,7 +4,7 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 
 export default defineConfig({
-  base: "https://wvovaw.github.io/rick-and-morty-gallery",
+  base: "https://wvovaw.github.io/rick-and-morty-gallery/",
   plugins: [vue()],
   resolve: {
     alias: {
