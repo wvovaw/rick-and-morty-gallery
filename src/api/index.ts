@@ -1,3 +1,4 @@
+import { ApiError } from "./errors";
 import type { ICharacter, IEpisode } from "@/models/rick-and-morty";
 
 interface IGetMany<T = any> {
@@ -5,7 +6,7 @@ interface IGetMany<T = any> {
     count: number;
     pages: number;
     next: string;
-    pref: number | null;
+    prev: number | null;
   };
   results: T[];
 }
@@ -18,15 +19,25 @@ async function api<T>(endpoint: string): Promise<T | undefined> {
   return response.json();
 }
 
+interface GetCharactersParams { page?: number; filters: { name?: string; status?: string } }
 type GetCharactersResponse = IGetMany<ICharacter>;
-export async function getCharacters(page = 1): Promise<GetCharactersResponse | undefined> {
+export async function getCharacters({ page = 1, filters: { name, status } }: GetCharactersParams): Promise<GetCharactersResponse | undefined> {
   try {
-    const data = await api<GetCharactersResponse>(`/character/?page=${page}`);
+    let query = `/character/?page=${page}`;
+    if (name && name?.length > 0)
+      query = query.concat(`&name=${name}`);
+    if (status && status?.length > 0)
+      query = query.concat(`&status=${status}`);
+
+    const data = await api<GetCharactersResponse>(query);
     return data;
   }
-  catch (error) {
-    console.error("Error fetching characters:", error);
-    throw error;
+  catch (e: unknown) {
+    if (e instanceof Error) {
+      if (e.message.includes("404"))
+        throw new ApiError("CHARACTERS_NOT_FOUND");
+    }
+    else { throw new ApiError(); }
   }
 }
 
@@ -36,8 +47,11 @@ export async function getEpisode(id: number): Promise<GetEpisodeResponse | undef
     const data = await api<GetEpisodeResponse>(`/episode/${id}`);
     return data;
   }
-  catch (error) {
-    console.error("Error fetching episode:", error);
-    throw error;
+  catch (e: unknown) {
+    if (e instanceof Error) {
+      if (e.message.includes("404"))
+        throw new ApiError("EPISODE_NOT_FOUND");
+    }
+    else { throw new ApiError(); }
   }
 }
