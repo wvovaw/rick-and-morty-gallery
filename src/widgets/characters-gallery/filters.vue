@@ -7,11 +7,16 @@ export interface IFilters {
   name?: string;
   status?: PossibleStatus;
 }
-const props = defineProps<{
-  initialState: Partial<IFilters>;
-}>();
+const props = withDefaults(defineProps<{
+  initialState?: Partial<IFilters>;
+}>(), {
+  initialState: () => ({
+    name: undefined,
+    status: undefined,
+  }),
+});
 const emit = defineEmits<{
-  "updateFilters": [f: IFilters];
+  updateFilters: [f: IFilters];
 }>();
 
 const statusOptions: UISelectOptions<PossibleStatus> = [
@@ -21,29 +26,30 @@ const statusOptions: UISelectOptions<PossibleStatus> = [
 ];
 
 const filters = reactive<IFilters>({
-  name: undefined,
-  status: undefined,
+  name: props.initialState.name,
+  status: props.initialState.status,
 });
 
 function handleSubmit() {
-  emit("updateFilters", filters);
+  emit("updateFilters", { ...filters });
 }
 function handleReset() {
-  filters.name = props.initialState?.name;
-  filters.status = props.initialState?.status;
-  emit("updateFilters", filters);
+  filters.name = props.initialState.name;
+  filters.status = props.initialState.status;
+  emit("updateFilters", { ...filters });
 }
 </script>
 
 <template>
   <div class="sticky-container">
-    <form class="filters" @submit.prevent="handleSubmit">
+    <div class="filters">
       <div class="filters__control">
         <label for="chars-gal-filters-name-input">Character name</label>
         <UIInput
           id="chars-gal-filters-name-input"
           v-model="filters.name"
           placeholder="Rick"
+          data-test-id="name-input"
         />
       </div>
       <div class="filters__control">
@@ -52,19 +58,24 @@ function handleReset() {
           id="chars-gal-filters-status-input"
           v-model="filters.status"
           :options="statusOptions"
+          data-test-id="status-select"
         />
       </div>
       <div class="filters__buttons">
         <UIButton
-          type="submit"
+          data-test-id="submit"
+          @click="handleSubmit"
         >
           Submit
         </UIButton>
-        <UIButton @click="handleReset">
+        <UIButton
+          data-test-id="reset"
+          @click="handleReset"
+        >
           Reset
         </UIButton>
       </div>
-    </form>
+    </div>
   </div>
 </template>
 

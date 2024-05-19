@@ -76,10 +76,6 @@ await fetchData();
     @update:current-page="handleUpdateCurrentPage"
   />
   <Filters
-    :initial-state="{
-      name: undefined,
-      status: undefined,
-    }"
     @update-filters="handleUpdateFilters"
   />
 </template>
