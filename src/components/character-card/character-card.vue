@@ -60,6 +60,7 @@ onMounted(async () => {
 .name {
   font-size: 1.5rem;
   font-weight: 500;
+  line-height: 1.4em;
 }
 .label {
   font-size: 0.8rem;
@@ -83,6 +84,7 @@ onMounted(async () => {
 .card__section {
   display: flex;
   flex-direction: column;
+  gap: 4px;
 }
 
 @media only screen and (max-width: 520px) {
@@ -103,11 +105,13 @@ onMounted(async () => {
 @media only screen and (min-width: 521px) {
   .card {
     display: grid;
-    grid-template-columns: 180px 1fr;
-    max-width: 520px;
+    grid-template-columns: 200px 1fr;
+    width: 520px;
+    height: 240px
   }
   .card__aside {
     overflow: hidden;
+    height: 100%;
     border-radius: var(--border-radius-md) 0 0 var(--border-radius-md);
   }
   .card__aside img {
