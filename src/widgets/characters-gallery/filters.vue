@@ -41,52 +41,43 @@ function handleReset() {
 </script>
 
 <template>
-  <div class="sticky-container">
-    <div class="filters">
-      <div class="filters__control">
-        <label for="chars-gal-filters-name-input">Character name</label>
-        <UIInput
-          id="chars-gal-filters-name-input"
-          v-model="filters.name"
-          placeholder="Rick"
-          data-test-id="name-input"
-        />
-      </div>
-      <div class="filters__control">
-        <label for="chars-gal-filters-status-input">Status</label>
-        <UISelect
-          id="chars-gal-filters-status-input"
-          v-model="filters.status"
-          :options="statusOptions"
-          data-test-id="status-select"
-        />
-      </div>
-      <div class="filters__buttons">
-        <UIButton
-          data-test-id="submit"
-          @click="handleSubmit"
-        >
-          Submit
-        </UIButton>
-        <UIButton
-          data-test-id="reset"
-          @click="handleReset"
-        >
-          Reset
-        </UIButton>
-      </div>
+  <div class="filters">
+    <div class="filters__control">
+      <label for="chars-gal-filters-name-input">Character name</label>
+      <UIInput
+        id="chars-gal-filters-name-input"
+        v-model="filters.name"
+        placeholder="Rick"
+        data-test-id="name-input"
+      />
+    </div>
+    <div class="filters__control">
+      <label for="chars-gal-filters-status-input">Status</label>
+      <UISelect
+        id="chars-gal-filters-status-input"
+        v-model="filters.status"
+        :options="statusOptions"
+        data-test-id="status-select"
+      />
+    </div>
+    <div class="filters__buttons">
+      <UIButton
+        data-test-id="submit"
+        @click="handleSubmit"
+      >
+        Submit
+      </UIButton>
+      <UIButton
+        data-test-id="reset"
+        @click="handleReset"
+      >
+        Reset
+      </UIButton>
     </div>
   </div>
 </template>
 
 <style scoped>
-.sticky-container {
-  position: sticky;
-  left: 16px;
-  bottom: 16px;
-  width: fit-content;
-}
-
 .filters {
   padding: 16px;
   width: fit-content;
