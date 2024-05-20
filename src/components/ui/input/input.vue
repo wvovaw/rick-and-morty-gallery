@@ -30,7 +30,7 @@ input {
   font-weight: 500;
   letter-spacing: 0.05em;
   color: hsl(var(--c-fg));
-  background-color: transparent;
+  background-color: hsl(var(--c-bg));
   border: 2px solid;
   border-color: hsl(var(--c-border));
   border-radius: 0.5rem;

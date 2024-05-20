@@ -1,12 +1,12 @@
 :root {
   --l-bg: 0, 0%, 94%;
-  --l-bg2: 0, 0%, 72%;
+  --l-bg2: 0, 0%, 82%;
   --l-fg: 0, 0%, 20%;
   --l-fg-muted: 180, 0%, 50%;
   --l-primary: 89, 64%, 64%;
   --l-secondary: 40, 90%, 56%;
   --l-accent: 188, 62%, 59%;
-  --l-border: 0, 0%, 80%;
+  --l-border: 0, 0%, 70%;
   --l-box-shadow-sm: 0px 4px 24px rgba(0, 0, 0, 0.1);
   --l-box-shadow-md: 0px 8px 32px rgba(0, 0, 0, 0.1);
   --l-box-shadow-lg: 0px 16px 36px rgba(0, 0, 0, 0.1);
