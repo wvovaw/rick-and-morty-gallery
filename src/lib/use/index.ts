@@ -1,1 +1,1 @@
-export * from "./useViewportWidth";
+export * from "./use-viewport-size";

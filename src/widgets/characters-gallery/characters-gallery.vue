@@ -8,9 +8,9 @@ import { getCharacters } from "@/api";
 import type { ICharacter } from "@/models/rick-and-morty";
 import { UIPagination } from "@/components/ui";
 import { ApiError } from "@/api/errors";
-import { useViewportWidth } from "@/lib/use";
+import { useViewportSize } from "@/lib/use";
 
-const { width } = useViewportWidth();
+const { width } = useViewportSize();
 const isUnder768 = computed(() => width.value < 768);
 
 const chars = ref<ICharacter[]>([]);
